@@ -8,13 +8,13 @@ if ((squares[i].id) % 16 == 0) {    // every 16 iterations
     container.appendChild(lineBreaks[i]);
 }
 
-// loop that creates a row of 256 squares
+// creates 256 squares
+const squares = [];
 for (let i = 0; i < 256; i++) {
     squares[i] = document.createElement('div');
-    squares[i].id = (i + 1);
+    squares[i].id = ('square' + (i + 1));
     squares[i].style.background = 'pink';
-    squares[i].style.width = '16px';
-    squares[i].style.height = '16px';
+    squares[i].style.width = '6.25%';
+    squares[i].style.height = '6.25%';
     squares[i].style.display = 'flex';
-    container.appendChild(squares[i]);
 }
