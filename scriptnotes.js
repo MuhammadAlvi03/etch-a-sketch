@@ -18,3 +18,17 @@ for (let i = 0; i < 256; i++) {
     squares[i].style.height = '6.25%';
     squares[i].style.display = 'flex';
 }
+
+// failed column idea
+const columns = [];
+
+for (let i= 0; i < 16; i++) {
+    columns[i] = document.createElement('div');
+    columns[i].style.display = 'flex';
+    columns[i].style.flexDirection = 'column';
+    columns[i].style.height = '100%';
+    columns[i].style.width = '6.25%';
+    columns[i].id = ('column' + (i + 1));
+    columns[i].className = 'column';
+    container.appendChild(columns[i]);
+}
