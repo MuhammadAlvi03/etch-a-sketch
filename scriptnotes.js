@@ -4,7 +4,7 @@
 const lineBreaks = [];
 if ((squares[i].id) % 16 == 0) {    // every 16 iterations
     lineBreaks[i] = document.createElement('p');
-    lineBreaks[i].id = ('break' + (i+1) * (0.0625));    // creates ids for each break
+    lineBreaks[i].id = ('break' + (i + 1) * (0.0625));    // creates ids for each break
     container.appendChild(lineBreaks[i]);
 }
 

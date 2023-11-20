@@ -1,14 +1,31 @@
 
-// make a gridsize var to determine how many times creation loop should iterate
-const gridSize = prompt('how many squares per side?')
+// DO RIGHT NOW: 
+// MAKE PROMPT INTO BUTTON,
+// FIX ALPHA COUNTER
 
-const bigContainer = document.querySelector('.biggerContainer');
+const bigContainer = document.querySelector('.bigContainer');
 bigContainer.style.display = 'flex';
-bigContainer.style.justifyContent = 'center';
+bigContainer.style.flexDirection = 'column';
+bigContainer.style.justifyContent = 'space-between';
+bigContainer.style.alignItems = 'center';
 bigContainer.style.height = '100vh';
 
+const resetButton = document.createElement('button');
+resetButton.style.display = 'flex';
+resetButton.style.width = '20vh';
+resetButton.style.height = '5vh';
+resetButton.style.flexGrow = '0.5';
+resetButton.style.alignItems = 'center';
+resetButton.style.justifyContent = 'center';
+resetButton.style.borderStyle = 'solid';
+resetButton.style.fontWeight = '600';
+resetButton.style.fontFamily = 'Verdana, Geneva, Tahoma, sans-serif';
+resetButton.style.padding = '6px';
+resetButton.innerText = 'Select grid size';
+bigContainer.appendChild(resetButton);
+
 const container = document.createElement('div');
-container.style.height = '100vh';
+container.style.height = '90vh';
 container.style.width = (container.style.height);
 container.style.display = 'flex';
 container.style.flexDirection = 'row';
@@ -18,26 +35,44 @@ container.style.borderStyle = 'solid';
 bigContainer.appendChild(container);
 
 
-// need to rework this function to make the width and height take up as much space as they can
-// creates 256 squares
-const squares = [];
-for (let i = 0; i < (gridSize * gridSize); i++) {
-    squares[i] = document.createElement('div');
-    squares[i].id = ('square' + (i + 1));
-    squares[i].style.display = 'flex';
-    squares[i].style.flexGrow = '1';
-    squares[i].style.flexShrink = '1';
-    squares[i].style.width = '6.25%';
-    squares[i].style.height = '6.25%';
-    squares[i].addEventListener('mouseover', randomColor);
-    container.appendChild(squares[i]);
+
+resetButton.addEventListener('click', () => {
+    clearGrid();
+    createSquares();
+});
+
+function createSquares() {
+    let squares = [];
+    gridSize = prompt('Enter desired squares per side. Maximum of 100');
+    for (let i = 0; i < (Math.pow(gridSize, 2)); i++) {
+        const sizePercent = (100 / gridSize);
+        const squareSize = `${sizePercent}%`
+        squares[i] = document.createElement('div');
+        squares[i].className = 'squares';
+        squares[i].id = ('square' + (i + 1));
+        squares[i].style.display = 'flex';
+        squares[i].style.flexGrow = '1';
+        squares[i].style.flexShrink = '1';
+        squares[i].style.width = squareSize;
+        squares[i].style.height = squareSize;
+        squares[i].addEventListener('mouseover', randomColor);
+        container.appendChild(squares[i]);
+    }
 }
 
+function clearGrid() {
+    while (container.firstChild) {
+        container.removeChild(container.lastChild);
+    }
+}
 
 function randomColor() {
     let randomValueOne = (parseInt(Math.random() * 255) + 1)
     let randomValueTwo = (parseInt(Math.random() * 255) + 1)
     let randomValueThree = (parseInt(Math.random() * 255) + 1)
-    this.style.backgroundColor = `rgb(${randomValueOne}, ${randomValueTwo}, ${randomValueThree})` // selector issue
+    let alphaCounter = '';
+    alphaCounter += 0.1;
+    this.style.backgroundColor = `rgba(${randomValueOne}, ${randomValueTwo}, ${randomValueThree}, ${alphaCounter})` // selector issue
 }
+
 
