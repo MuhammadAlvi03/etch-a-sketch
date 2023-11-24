@@ -1,7 +1,6 @@
 
-// DO RIGHT NOW: 
-// MAKE PROMPT INTO BUTTON,
-// FIX ALPHA COUNTER
+const body = document.querySelector('body');
+body.style.backgroundColor = 'rgb(32, 32, 32)';
 
 const bigContainer = document.querySelector('.bigContainer');
 bigContainer.style.display = 'flex';
@@ -21,6 +20,7 @@ resetButton.style.borderStyle = 'solid';
 resetButton.style.fontWeight = '600';
 resetButton.style.fontFamily = 'Verdana, Geneva, Tahoma, sans-serif';
 resetButton.style.padding = '6px';
+resetButton.style.borderRadius = '12px';
 resetButton.innerText = 'Select grid size';
 bigContainer.appendChild(resetButton);
 
@@ -32,6 +32,8 @@ container.style.flexDirection = 'row';
 container.style.flexWrap = 'wrap';
 container.style.borderColor = 'black';
 container.style.borderStyle = 'solid';
+container.style.borderWidth = '8px';
+container.style.backgroundColor = 'white';
 bigContainer.appendChild(container);
 
 
@@ -43,7 +45,7 @@ resetButton.addEventListener('click', () => {
 
 function createSquares() {
     let squares = [];
-    gridSize = prompt('Enter desired squares per side. Maximum of 100');
+    gridSize = prompt('Enter desired number of squares per side. Maximum of 100.');
     for (let i = 0; i < (Math.pow(gridSize, 2)); i++) {
         const sizePercent = (100 / gridSize);
         const squareSize = `${sizePercent}%`
@@ -70,9 +72,10 @@ function randomColor() {
     let randomValueOne = (parseInt(Math.random() * 255) + 1)
     let randomValueTwo = (parseInt(Math.random() * 255) + 1)
     let randomValueThree = (parseInt(Math.random() * 255) + 1)
-    let alphaCounter = '';
-    alphaCounter += 0.1;
-    this.style.backgroundColor = `rgba(${randomValueOne}, ${randomValueTwo}, ${randomValueThree}, ${alphaCounter})` // selector issue
+    this.style.backgroundColor = `rgb(${randomValueOne}, ${randomValueTwo}, ${randomValueThree})`
 }
+
+
+
 
 
